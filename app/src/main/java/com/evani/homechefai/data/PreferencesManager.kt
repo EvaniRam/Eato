@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.evani.homechefai.data.model.UserPreferences
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +19,7 @@ class PreferencesManager(private val context: Context) {
         private val CUISINE = stringPreferencesKey("cuisine")
         private val COUNTRY = stringPreferencesKey("country")
         private val REGION = stringPreferencesKey("region")
+        private val IS_FIRST_LAUNCH = booleanPreferencesKey("is_first_launch")
     }
 
     val userPreferencesFlow: Flow<UserPreferences> = context.dataStore.data
@@ -30,6 +32,11 @@ class PreferencesManager(private val context: Context) {
             )
         }
 
+    val isFirstLaunch: Flow<Boolean> = context.dataStore.data
+        .map { preferences ->
+            preferences[IS_FIRST_LAUNCH] ?: true
+        }
+
     suspend fun updatePreferences(userPreferences: UserPreferences) {
         context.dataStore.edit { preferences ->
             preferences[DIET_TYPE] = userPreferences.dietType
@@ -39,4 +46,9 @@ class PreferencesManager(private val context: Context) {
         }
     }
 
+    suspend fun setFirstLaunchComplete() {
+        context.dataStore.edit { preferences ->
+            preferences[IS_FIRST_LAUNCH] = false
+        }
+    }
 }
