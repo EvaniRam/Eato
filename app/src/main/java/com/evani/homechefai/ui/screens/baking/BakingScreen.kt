@@ -69,20 +69,6 @@ import com.evani.homechefai.checkCameraPermission
 import com.evani.homechefai.registerCameraLauncher
 import com.evani.homechefai.registerImagePicker
 
-val images = arrayOf(
-    // Image generated using Gemini from the prompt "cupcake image"
-    R.drawable.baked_goods_1,
-    // Image generated using Gemini from the prompt "cookies images"
-    R.drawable.baked_goods_2,
-    // Image generated using Gemini from the prompt "cake images"
-    R.drawable.baked_goods_3,
-)
-val imageDescriptions = arrayOf(
-    R.string.image1_description,
-    R.string.image2_description,
-    R.string.image3_description,
-)
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BakingScreen(
