@@ -60,6 +60,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.ui.res.stringResource
 import com.evani.homechefai.viewmodel.BakingViewModel
 import com.evani.homechefai.CameraPermissionDialog
 import com.evani.homechefai.viewmodel.ChatMessage
@@ -68,6 +69,7 @@ import com.evani.homechefai.ui.state.UiState
 import com.evani.homechefai.checkCameraPermission
 import com.evani.homechefai.registerCameraLauncher
 import com.evani.homechefai.registerImagePicker
+import com.evani.homechefai.ui.theme.Dimens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -124,7 +126,7 @@ fun BakingScreen(
             TopAppBar(
                 title = { 
         Text(
-                        text = "EATO",
+                        text = stringResource(R.string.text_eato),
                         style = MaterialTheme.typography.titleLarge
                     )
                 },
@@ -132,7 +134,7 @@ fun BakingScreen(
                     IconButton(onClick = onNavigateToSettings) {
                         Icon(
                             imageVector = Icons.Default.Settings,
-                            contentDescription = "Settings",
+                            contentDescription = stringResource(R.string.title_settings),
                             tint = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     }
@@ -151,9 +153,9 @@ fun BakingScreen(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = Dimens.large),
                 state = lazyListState,
-                contentPadding = PaddingValues(vertical = 8.dp)
+                contentPadding = PaddingValues(vertical = Dimens.medium)
             ) {
                 items(messages) { message ->
                     when (message) {
@@ -165,14 +167,14 @@ fun BakingScreen(
                                         color = MaterialTheme.colorScheme.onPrimaryContainer
                                     )
                                     message.image?.let { bitmap ->
-                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Spacer(modifier = Modifier.height(Dimens.medium))
                                         Image(
                                             bitmap = bitmap.asImageBitmap(),
                                             contentDescription = null,
                                             modifier = Modifier
-                                                .height(200.dp)
+                                                .height(Dimens.height_200)
                                                 .fillMaxWidth()
-                                                .clip(RoundedCornerShape(8.dp)),
+                                                .clip(RoundedCornerShape(Dimens.medium)),
                                             contentScale = ContentScale.Fit
                                         )
                                     }
@@ -185,7 +187,7 @@ fun BakingScreen(
                             }
                         }
                     }
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(Dimens.small))
                 }
 
                 // Loading indicator
@@ -194,13 +196,13 @@ fun BakingScreen(
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(16.dp),
+                                .padding(Dimens.large),
                             contentAlignment = Alignment.Center
                         ) {
                             CircularProgressIndicator(
-                                modifier = Modifier.size(24.dp),
+                                modifier = Modifier.size(Dimens.extraLarge),
                                 color = MaterialTheme.colorScheme.primary,
-                                strokeWidth = 2.dp
+                                strokeWidth = Dimens.extraSmall
                             )
                         }
                     }
@@ -225,7 +227,7 @@ fun BakingScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.surface)
-                    .padding(8.dp)
+                    .padding(Dimens.large)
             )
         }
     }
@@ -238,16 +240,16 @@ private fun UserMessageBubble(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(end = 64.dp)
+            .padding(end = Dimens.padding_64)
     ) {
         Card(
             modifier = Modifier.widthIn(max = 340.dp),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer
             ),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(Dimens.padding_12)
         ) {
-            Box(modifier = Modifier.padding(8.dp)) {
+            Box(modifier = Modifier.padding(Dimens.large)) {
                 content()
             }
         }
@@ -261,7 +263,7 @@ private fun AssistantMessageBubble(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 64.dp)
+            .padding(start = Dimens.padding_64)
     ) {
         Card(
             modifier = Modifier
@@ -272,7 +274,7 @@ private fun AssistantMessageBubble(
             ),
             shape = RoundedCornerShape(12.dp)
         ) {
-            Box(modifier = Modifier.padding(8.dp)) {
+            Box(modifier = Modifier.padding(Dimens.large)) {
                 content()
             }
         }
@@ -284,7 +286,9 @@ private fun AssistantMessageBubble(
 private fun StyledText(text: String) {
     val segments = parseStyledText(text)
     FlowRow(
-        modifier = Modifier.fillMaxWidth().padding(2.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(2.dp)
     ) {
         segments.forEach { segment ->
             Text(

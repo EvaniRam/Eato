@@ -25,4 +25,6 @@
     <string name="country">Country</string>
     <string name="advanced_settings">Advanced Settings</string>
     <string name="region">Select Region</string>
+    <string name="text_eato">EATO</string>
+    <string name="title_settings">Settings</string>
 </resources>
