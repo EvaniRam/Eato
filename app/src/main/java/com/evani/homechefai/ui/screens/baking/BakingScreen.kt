@@ -272,7 +272,7 @@ private fun AssistantMessageBubble(
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.secondaryContainer
             ),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(Dimens.padding_12)
         ) {
             Box(modifier = Modifier.padding(Dimens.large)) {
                 content()
@@ -288,7 +288,7 @@ private fun StyledText(text: String) {
     FlowRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(2.dp)
+            .padding(Dimens.extraSmall)
     ) {
         segments.forEach { segment ->
             Text(
@@ -320,11 +320,11 @@ private fun ChatInputArea(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 8.dp, vertical = 4.dp)
+                    .padding(horizontal = Dimens.large, vertical = Dimens.small)
             ) {
                 Image(
                     bitmap = bitmap.asImageBitmap(),
-                    contentDescription = "Selected image",
+                    contentDescription = stringResource(R.string.content_desc_selected_image),
                     modifier = Modifier
                         .height(120.dp)
                         .fillMaxWidth()
