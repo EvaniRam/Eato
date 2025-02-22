@@ -17,6 +17,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -29,13 +32,16 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
+
     buildFeatures {
         compose = true
         buildConfig = true
@@ -46,7 +52,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -58,6 +63,10 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.generativeai)
     implementation(libs.androidx.datastore.preferences)
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

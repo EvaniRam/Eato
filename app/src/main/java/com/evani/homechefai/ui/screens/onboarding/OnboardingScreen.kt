@@ -1,6 +1,8 @@
 package com.evani.homechefai.ui.screens.onboarding
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -233,8 +235,8 @@ private fun StepContent(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = modifier.fillMaxWidth().verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = title,
